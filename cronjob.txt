@@ -1,0 +1,8 @@
+------ Database machine ------
+
+0 0 */14 * * PGPASSWORD="postgres" pg_dump -h localhost -U postgres postgres | gzip > /var/backups/postgres_`date +\%Y\%m\%d_\%H\%M\%S`.sql.gz
+0 0 */14 * * /bin/echo "save" | /usr/bin/redis-cli
+
+------ Docker machine ------
+
+*/14 * * * * PGPASSWORD="postgres" pg_dump -h default-group11-database.francecentral.cloudapp.azure.com  -U postgres postgres | gzip > /var/backups/postgres_`date +\%Y\%m\%d_\%H\%M\%S`.sql.gz
